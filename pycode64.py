@@ -1,5 +1,11 @@
+#!/usr/bin/env python3
+
 import base64
 from sys import argv
+
+i = 0
+if argv[0] != 'python3':
+    i = 1
 
 def encoder(response):
     if response.endswith(".txt"):
@@ -17,9 +23,9 @@ def decoder(response):
     output = output.decode() # removes b'...'
     print(output)
 
-if argv[1] == '-e':
+if argv[i] == '-e':
     print('encoding...')
-    encoder(argv[2])
-elif argv[1] == '-d':
+    encoder(argv[i+1])
+elif argv[i] == '-d':
     print('decoding...')
-    decoder(argv[2])
+    decoder(argv[i+1])
