@@ -4,6 +4,7 @@ import base64
 from sys import argv
 
 i = 0
+# when running as binary, change index 
 if argv[0] != 'python3':
     i = 1
 
