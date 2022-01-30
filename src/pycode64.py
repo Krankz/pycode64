@@ -8,11 +8,20 @@ parser.add_argument('--en', help='Encode to base64.')
 parser.add_argument('--de', help='Decode to UTF-8.')
 args = parser.parse_args()
 
+def writer(text):
+    final_file = open(f'{filename[:-4]}.new', 'w')
+    final_file.writelines(text)
+    final_file.close()
+    print(f'new file has been written to {filename[:-4]}.new')
 if args.en:
+    filename = args.en
     print('encoding...')
-    translator.encoder(args.en)
+    new_file = translator.encoder(args.en)
+    writer(new_file)
 elif args.de:
+    filename = args.de
     print('decoding...')
-    translator.decoder(args.de)
+    new_file = translator.decoder(args.de)
+    writer(new_file)
 
 

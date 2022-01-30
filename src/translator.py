@@ -8,7 +8,7 @@ def encoder(response):
         response = f.read()
     output = base64.b64encode(response.encode())
     output = output.decode() # removes b'...'
-    print(output)
+    return output
 
 def decoder(response):
     if response.endswith(".txt"):
@@ -16,5 +16,4 @@ def decoder(response):
         response = f.read()
     output = base64.b64decode(response)
     output = output.decode() # removes b'...'
-    print(output)
-
+    return output
