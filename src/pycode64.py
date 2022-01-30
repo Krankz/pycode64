@@ -1,32 +1,18 @@
 #!/usr/bin/env python3
 
-import base64
-from sys import argv
+import translator
+import argparse
 
-i = 0
-# when running as binary, change index 
-if argv[0] != 'python3':
-    i = 1
+parser = argparse.ArgumentParser(prog='pycode64')
+parser.add_argument('--en', help='Encode to base64.')
+parser.add_argument('--de', help='Decode to UTF-8.')
+args = parser.parse_args()
 
-def encoder(response):
-    if response.endswith(".txt"):
-        f = open(response, 'r')
-        response = f.read()
-    output = base64.b64encode(response.encode())
-    output = output.decode() # removes b'...'
-    print(output)
-
-def decoder(response):
-    if response.endswith(".txt"):
-        f = open(response, 'r')
-        response = f.read()
-    output = base64.b64decode(response)
-    output = output.decode() # removes b'...'
-    print(output)
-
-if argv[i] == '-e':
+if args.en:
     print('encoding...')
-    encoder(argv[i+1])
-elif argv[i] == '-d':
+    translator.encoder(args.en)
+elif args.de:
     print('decoding...')
-    decoder(argv[i+1])
+    translator.decoder(args.de)
+
+
